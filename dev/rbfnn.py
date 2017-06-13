@@ -102,7 +102,15 @@ class RBFNN(object):
         # components 3
         self.alpha = alpha #???
         self.Q = Q
+        self.func = self.run_rbfnn
         '''new'''
+    
+    def run_rbfnn(trainX, trainY, W, U, V):
+        D = np.power(sciDist.cdist(trainX, U), 2)
+        Z = np.exp(D/np.transpose((-2 * np.power(V, 2)))) # how to implement element-wise operation?
+        A = np.dot(Z, W)
+        assert np.shape(A) == np.shape(trainY)
+        return A 
 
     # calculate activations
     def activCalc(self, trainX):

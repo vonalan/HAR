@@ -37,13 +37,23 @@ def loadDataSet(fileName, actions, path):
                     print str(datetime.datetime.now())[:19] + " ValueError: could not convert string to float: ", curLine
                     for i in xrange(len(actions)):
                         if actions[i] in lineFile: # ucf-Diving-Side-001-2538-5_70133_h
-                            if 'jpeg' in lineFile: # ucf-Diving-Side-001-jpeg_o
-                                flag = 'jpeg'
-                                # print flag
-                            elif 'jpeg' not in lineFile: # ucf-Diving-Side-001-2538-5_70133_h
-                                flag = 'origin' 
-                                # print flag
-                            else: 
+                            # # ucf
+                            # if 'jpeg' in lineFile: # ucf-Diving-Side-001-jpeg_o
+                            #     flag = 'jpeg'
+                            #     # print flag
+                            # elif 'jpeg' not in lineFile: # ucf-Diving-Side-001-2538-5_70133_h
+                            #     flag = 'origin'
+                            #     # print flag
+                            # else:
+                            #     pass
+
+                            # kth
+                            lineFile = curLine
+                            if lineFile[-1][-1] == 'h':
+                                flag = 'hflip'
+                            elif lineFile[-1][-1] == 'o':
+                                flag = 'origin'
+                            else:
                                 pass
                             cate = i + 1
                         else: # the first line: # point-type y-norm x-norm t-norm y x t sigma2 tau2 dscr-hog(72) dscr-hof(90)
